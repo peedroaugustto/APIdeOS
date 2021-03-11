@@ -11,5 +11,6 @@ import com.treinamentoapi.osworks.domain.model.Cliente;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	
 	List<Cliente> findByNomeContaining(String nome);
+	Cliente findByEmail(String email);
 
 }
