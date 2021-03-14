@@ -13,13 +13,13 @@ import com.treinamentoapi.osworks.domain.model.OrdemServico;
 import com.treinamentoapi.osworks.domain.model.StatusOrdemServico;
 import com.treinamentoapi.osworks.domain.repository.ClienteRepository;
 import com.treinamentoapi.osworks.domain.repository.ComentarioRepository;
-import com.treinamentoapi.osworks.domain.repository.OrdemServiceRepository;
+import com.treinamentoapi.osworks.domain.repository.OrdemServicoRepository;
 
 @Service
 public class OrdemServicoService {
 	
 	@Autowired
-	private OrdemServiceRepository ordemServicoRepository;
+	private OrdemServicoRepository ordemServicoRepository;
 	
 	@Autowired
 	private ClienteRepository clienteRepository;
@@ -40,9 +40,17 @@ public class OrdemServicoService {
 		
 	}
 	
+	
+	public void finalizar(Long ordemServicoId) {
+		OrdemServico ordemServico = buscar(ordemServicoId);
+		ordemServico.finalizar();
+		ordemServicoRepository.save(ordemServico);
+	}
+
+
+	
 	public Comentario adicionar(Long ordemServicoId, String descricao) {
-		OrdemServico ordemServico = ordemServicoRepository.findById(ordemServicoId)
-				.orElseThrow(()-> new EntidadeNaoEncontradaException("Ordem de Serviço não encontrada"));
+		OrdemServico ordemServico = buscar(ordemServicoId);
 		
 		
 		Comentario comentario = new Comentario();
@@ -53,4 +61,8 @@ public class OrdemServicoService {
 		return comentarioRepository.save(comentario);
 	}
 
+	private OrdemServico buscar(Long ordemServicoId) {
+		return ordemServicoRepository.findById(ordemServicoId)
+				.orElseThrow(()-> new EntidadeNaoEncontradaException("Ordem de Serviço não encontrada"));
+	}
 }

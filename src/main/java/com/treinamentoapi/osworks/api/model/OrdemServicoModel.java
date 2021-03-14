@@ -3,12 +3,15 @@ package com.treinamentoapi.osworks.api.model;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
+import com.treinamentoapi.osworks.domain.model.StatusOrdemServico;
+
 public class OrdemServicoModel {
 
 	private Long id;
 	private ClienteResumoModel cliente;
 	private String descricao;
 	private BigDecimal preco;
+	private StatusOrdemServico status;
 	private OffsetDateTime dataAbertura;
 	private OffsetDateTime dataFinalizacao;
 	
@@ -49,6 +52,14 @@ public class OrdemServicoModel {
 	public void setCliente(ClienteResumoModel cliente) {
 		this.cliente = cliente;
 	}
+	public StatusOrdemServico getStatus() {
+		return status;
+	}
+	public void setStatus(StatusOrdemServico status) {
+		this.status = status;
+	}
+	
+	
 	
 	
 	
