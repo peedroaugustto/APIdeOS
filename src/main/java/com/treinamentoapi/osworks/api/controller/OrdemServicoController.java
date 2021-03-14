@@ -25,7 +25,7 @@ import com.treinamentoapi.osworks.domain.repository.OrdemServiceRepository;
 import com.treinamentoapi.osworks.domain.service.OrdemServicoService;
 
 @RestController
-@RequestMapping("ordem-servico")
+@RequestMapping("/ordem-servico")
 public class OrdemServicoController {
 
 	@Autowired
